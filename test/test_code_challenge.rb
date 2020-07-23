@@ -16,7 +16,8 @@ class TestCodeChallenge < MiniTest::Test
   def test_area_of_circle_given_radius
     assert_equal 314.1592653589793, @code_challenge.area_of_circle(10)
     assert_equal 18_037.808259118035, @code_challenge.area_of_circle(75.77343)
-    assert_equal 'radius should be positive', @code_challenge.area_of_circle(-20)
+    #assert_equal 'radius should be positive', @code_challenge.area_of_circle(-20)
+    assert_predicate @code_challenge.area_of_circle(-20), :positive?
   end
 
   def test_sum_array
@@ -38,7 +39,7 @@ class TestCodeChallenge < MiniTest::Test
 
   def test_write_array_to_csv
     @code_challenge.write_array_to_csv(1..5)
-    assert_equal "index,number,sum\n0,1,0\n1,2,2\n2,3,6\n3,4,12\n4,5,20\n",
+    assert_equal "index,number,product\n0,1,0\n1,2,2\n2,3,6\n3,4,12\n4,5,20\n",
                  File.read('test.csv')
   end
 end
